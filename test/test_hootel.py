@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import allure
-import pytest
+
 
 
 class TestHootel(object):
@@ -28,16 +28,18 @@ class TestHootel(object):
     def test_login(self):
         login_btn = self.browser.find_element(By.XPATH, '//a[@class="nav-link"]')
         login_btn.click()
-
+        email='hiwasi1765@wisnick.com'
         email_input = self.browser.find_element(By.ID, 'email')
-        email_input.send_keys('hiwasi1765@wisnick.com')
-
+        email_input.send_keys(email)
+        password='tesztelek2021'
         password_input = self.browser.find_element(By.ID, 'password')
-        password_input.send_keys('tesztelek2021')
+        password_input.send_keys(password)
 
         submit_btn = self.browser.find_element(By.NAME, 'submit')
         submit_btn.click()
         time.sleep(1)
+
+        allure.dynamic.description(f"Used Email: {email}\nUsed Password: {password}")
 
         logout_btn = self.browser.find_element(By.ID, 'logout-link')
 
